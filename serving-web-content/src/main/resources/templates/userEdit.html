@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+
+<header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+
+    <!--        <h3 class="text-white " th:text="${users}"></h3>-->
+    <!--            <p class="text-white " th:text="${user}"></p>-->
+
+    <!--        <h2 class="d-flex align-items-center fs-4 text-white mb-0" th:text="${user}"></h2>-->
+
+    <form class="ms-auto " th:action="@{/logout}" method="post">
+      <input type="submit" class="text-light bg-dark ms-3 " value="logout">logoaout</input>
+    </form>
+
+    <!--        <h1 class="d-flex align-items-center fs-4 text-white mb-0"></h1>-->
+    <!--                <a href="/docs/5.2/examples/cheatsheet/" class="ms-auto link-light" hreflang="en">logaut</a>-->
+  </div>
+</header>
+
+
+
+    <div class="container ">
+      <main class="form-signin w-25 m-auto">
+        <form action="/userList" method="post">
+
+          <h1 class="h3 mb-3 fw-normal mt-5" >user editor</h1>
+
+
+
+          <div>Name: </div>
+          <input type="text" class="form-control" name="username" th:value="${user.username}"/>
+          <div>Password: </div>
+          <input type="text" class="form-control" name="password" th:value="${user.password}"/>
+          <div>phone: </div>
+          <input type="text" class="form-control" name="phone" th:value="${user.phone}"/>
+          <div>Age: </div>
+          <input type="text" class="form-control" name="old" th:value="${user.old}"/>
+          <div th:each="el : ${roles}" >
+            <label><input type="checkbox" th:name="${el.name()}" th:text="${el.name()}"/></label>
+          </div>
+          <input type="hidden" th:value="${user.id}" name="userId"/>
+          <input type="hidden" th:value="${_csrf.token}" th:name="_csrf"/>
+          <button type="submit" class="btn btn-primary mt-2 btn-lg w-100 m-auto">save</button>
+
+        </form>
+      </main>
+      <a href="/registration">add new user</a>
+    </div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
+
+
+</body>
+</html>
+
+
+

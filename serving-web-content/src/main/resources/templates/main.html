@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+
+<header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+        <h3 class="text-white " th:text="${user}"></h3>
+
+
+        <form class="ms-auto " th:action="@{/logout}" method="post">
+            <input type="submit" class="text-light bg-dark ms-3 " value="logout">logoaout</input>
+        </form>
+
+
+    </div>
+</header>
+
+<div class="d-flex align-items-start ">
+    <div class="nav flex-column col-2 nav-pills me-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+
+        <a class="btn btn-light" href="/userList" role="button">Admin</a>
+        <a class="btn btn-primary " th:href="@{/foruser/} + ${userr}" role="button">User</a>
+    </div>
+    <div class="tab-content col-9" id="v-pills-tabContent ">
+        <div class="tab-pane fade show active ms-3 me-3" id="v-pills-home" role="tabpanel"
+             aria-labelledby="v-pills-home-tab">
+            <h2 class="mt-5">User panel</h2>
+
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                            type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Users table
+                    </button>
+                </li>
+
+
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                     tabindex="0">
+
+                    <div class="border border-1 border-top-0">
+
+
+                        <table class="table mb-0">
+                            <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Old</th>
+                                <th scope="col">Username</th>
+
+                            </tr>
+                            </thead>
+                            <tbody th:each="el:${users}">
+                            <tr>
+                                <td th:text="${el.id}"></td>
+                                <td th:text="${el.phone}"></td>
+                                <td th:text="${el.old}"></td>
+                                <td th:text="${el.username}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade pb-2" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                     tabindex="0">
+
+
+                    <div class="border border-1 border-top-0">
+                        <h3 class="font-weight-bold ms-3">Add new users</h3>
+                        <main class="form-signin w-25 m-auto mt-0 mb-5">
+
+                        </main>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <h2 class="mt-5">Users panel</h2>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form th:action="${users}" method="post">
+                    username: <input type="text" th:value="${username}" name="username">
+                    password: <input type="text" th:value="${password}" name="password">
+                    email: <input type="text" th:value="${email}" name="old">
+                    phone: <input type="text" th:value="${phone}" name="phone">
+                    <input type="submit" name="registration">
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
+
+
+</body>
+</html>
